@@ -6,7 +6,11 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract FrankCoin is ERC20Burnable, Pausable, Ownable {
-    constructor(uint256 initialSupply) ERC20("FrankCoin", "FRC") Ownable(msg.sender) {
+    constructor(uint256 initialSupply)
+        ERC20("FrankCoin", "FRC")
+        Ownable(msg.sender)
+    {
+        require(initialSupply > 0, "Initial supply is required!");
         _mint(msg.sender, initialSupply * (10 ** decimals()));
     }
 
@@ -19,17 +23,11 @@ contract FrankCoin is ERC20Burnable, Pausable, Ownable {
     }
 
     // Hook that runs before any transfer (including mint and burn)
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal
+    function _beforeTokenTransfer(address from, address to, uint256 amount)
+        internal
         override
     {
         super._beforeTokenTransfer(from, to, amount);
         require(!paused(), "FrankCoin: Token transfers are paused");
     }
-}
-
-function _trand(address to, address from uint256 amount) internal {
-    override 
-    super._trand(from, to);
-    
-
 }
