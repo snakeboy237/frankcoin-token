@@ -216,6 +216,25 @@
 					{
 						"indexed": false,
 						"internalType": "address",
+						"name": "oldAdmin",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "adminUpdate",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
 						"name": "updateUser",
 						"type": "address"
 					},
@@ -377,6 +396,45 @@
 				"name": "burnFrom",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contractDescription",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contractName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contractVersion",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
 				"type": "function"
 			},
 			{
@@ -687,6 +745,19 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "transferAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -877,11 +948,11 @@
 	},
 	"sources": {
 		"contracts/FrankCoin.sol": {
-			"keccak256": "0x4cbea3430c949cb5f135244f6c7740d98dc977ed2e628d4e0e85dfc8d0b8966b",
+			"keccak256": "0x9d4d5a8686d93bcf540b864993c0a9af49bcfbfb1616cca64d972f145390fd23",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f60d182eef5e2d4d341b1a4191f513d7710a7483e4d66004adaef75ed2009f87",
-				"dweb:/ipfs/QmfWZPjbDnRXi7zm4TUebd5YRt4QNu3dmTvaMFLAT8PfpQ"
+				"bzz-raw://8555c5dfcb5950edbed6ea25eb71133b495cc0d3a51867721d2f5c91d6092e19",
+				"dweb:/ipfs/QmWzB6dtPiNdxVFB3RBDthxzXoKiobMBVQnUajsQdXmCPX"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contracts/access/AccessControl.sol": {

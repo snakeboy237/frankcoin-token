@@ -25,6 +25,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contr
     event TaxUpdate(uint256 oldTax, uint256 newTax);
     event TreasuryUpdate(address oldTreasury, address newTreasury);
     event whitelistUpdat(address updateUser, bool status);
+    event adminUpdate(address oldAdmin, address newAdmin);
 
 
     constructor(address _admin, address _treasury) ERC20("FrankCoin", "FRNC")
@@ -38,6 +39,23 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contr
 
         treasury = _treasury; //Setting the treasury address
 
+    }
+
+
+    //Contract metadata functions  
+    function contractName() public pure returns(string memory)
+    {
+        return "FrankCoin";
+    }
+
+    function contractVersion() public pure returns(string memory)
+    {
+        return "1.0.0";
+    
+    }
+
+    function contractDescription() public pure returns (string memory) {
+    return "A production-grade real estate custody token with role-based minting, tax logic, whitelist, and upgradeable ownership.";
     }
 
     //Mint restricted to mint users
@@ -94,14 +112,25 @@ function pause() public onlyRole(ADMIN_ROLE)
 }
 
    function updateTaxPercentage(uint256 newTaxPercentage) external onlyRole(ADMIN_ROLE) {
-        require(newTaxPercentage <= 1000);
+        require(newTaxPercentage <= 1000,"Invalid Tax percentage");
         //Saving old percentage value to return it in case if user wants to revert back 
         uint256 oldTax = taxPercentage;
         taxPercentage = newTaxPercentage;
         emit TaxUpdate(oldTax,newTaxPercentage);
     }
 
+    function transferAdmin(address newAdmin) external onlyRole(DEFAULT_ADMIN_ROLE) {
+        require(newAdmin != address(0),"Invalid Arguments"); // Checking if new admin is not empty
+        address oldAdmin = msg.sender;
 
+        _grantRole(DEFAULT_ADMIN_ROLE, newAdmin);
+        _grantRole(ADMIN_ROLE,newAdmin);
+        
+        emit adminUpdate(oldAdmin,newAdmin);
+
+        _revokeRole(ADMIN_ROLE, msg.sender);
+        _revokeRole(DEFAULT_ADMIN_ROLE, msg.sender);
+    }
 
 }
 
