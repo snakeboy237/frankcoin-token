@@ -31,7 +31,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v4.9.3/contr
     constructor(address _admin, address _treasury) ERC20("FrankCoin", "FRNC")
     {
         
-        require(_admin != address(0) && _treasury != address(0),"Invalid arguments");  // avoiding empty addresses error during initiation
+        require(_admin != address(0) && _treasury != address(0),"Invalide arguments");  // avoiding empty addresses error during initiation
         
         _grantRole(DEFAULT_ADMIN_ROLE, _admin);  // Grants default role to admin
         _grantRole(ADMIN_ROLE, _admin);  //Granted admin role to admin
